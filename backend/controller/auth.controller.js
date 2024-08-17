@@ -1,4 +1,6 @@
 import  {User} from '../models/user.model.js'
+import bcryptjs from 'bcryptjs'
+import { generateAuthTokenAndCookie } from '../utils/generateToken.js';
 
 export async function signup(req,res){
     try{
@@ -23,13 +25,27 @@ export async function signup(req,res){
         }
         const profilePictures = ["/img1.png", "/img2.png", "/img3.png"];
         const image = profilePictures[Math.floor(Math.random() * profilePictures.length)];
+        var salt = bcryptjs.genSaltSync(10);
+        var hash = bcryptjs.hashSync(password, salt);
 
         const newUser = new User({
             email: email,
-            password: password,
+            password: hash,
             username: username,
             image: image
         })
+        if(newUser)
+        {
+            generateAuthTokenAndCookie(newUser._id, res);
+            await newUser.save();
+            console.log("user created");
+            res.status(201).json({success: true, message: "user created"});
+        }
+        else
+        {
+            res.status(400).json({success:false, message: "unable to create user"})
+
+        }
         // const newUser = new User({
         //     email,
         //     password,
@@ -37,9 +53,7 @@ export async function signup(req,res){
         //     image
         // })
         // The above can also be written->JS trick
-        await newUser.save()
-        console.log("user created");
-        res.status(201).json({success: true, message: "user created"});
+       
     }
     catch(error){
         console.log("error at signup controller", error.message);
@@ -48,9 +62,34 @@ export async function signup(req,res){
 }
 
 export async function login(req,res){
-    res.send("login route");
+    try{
+        const {email, password}= req.body;
+        if(!email || !password)
+            return res.status(401).json({success: false, message: "Provide all details please"});
+        const existUser = await User.findOne({email: email});
+        if(!existUser)
+        {
+            return res.status(401).json({success: false, message: "Email is not signup yet"});
+        }
+        const isPasswordCorrect = await bcryptjs.compare(password, existUser.password)
+        if(!isPasswordCorrect)
+            return res.status(401).json({success: false, message: "Password is incorrect"})
+        generateAuthTokenAndCookie(existUser._id, res)
+        res.status(201).json({success: true, message: "useer logged in successfully"})
+    } 
+    catch(error){
+        res.status(500).json({success: false, message: "catch error, unable to log in"})
+        console.log("cant log in, catch block", error.message);
+    }
+
 }
 
 export async function logout(req,res){
-    res.send("logout route");
+    try{
+        res.clearCookie("cookie-netflix")
+        res.status(201).json({success: true, message:"successfully logged out"})
+    } catch(error) {
+        res.status(400).json({success: false, message: "couldnt log out, sorry"})
+        console.log("unable to logout api", error.message);
+    }
 }
