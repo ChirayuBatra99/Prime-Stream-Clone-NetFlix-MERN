@@ -7,4 +7,5 @@ export const ENV_VARS = {
     PORT: process.env.PORT,
     JWT: process.env.JWT_SECRET,
     STATE: process.env.STATE,
+    TMDB_API_KEY: process.env.TMDB_API_KEY,
 };
