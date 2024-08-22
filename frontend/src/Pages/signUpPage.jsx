@@ -1,7 +1,23 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import { useState } from 'react';
+import { useAuthStore } from '../store/authUser.js';
+// import { sign } from 'jsonwebtoken';
 
 function SignUpPage() {
+    const {searchParams}= new URL(document.location)
+    const emailValue= searchParams.get("email")
+    const [email, setEamil]= useState("");
+    const [username, setUsername]= useState("");
+    const [password, setPassword] = useState(""); 
+    const {signup, isSigningUp} = useAuthStore();
+    
+
+    const handleClick = (e) =>{
+        e.preventDefault();
+        signup({ email, username, password});
+    }
+
   return (
     <div className='hero-bg h-screen w-full'>
         <header className='flex items-center justify-between p-4 max-w-6xl mx-auto'>
@@ -20,8 +36,10 @@ function SignUpPage() {
                         Email
                     </label>
                     <input
-                        className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-white focus:outline-none focus:ring'
+                        className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-black focus:outline-none focus:ring'
                         placeholder='Enter email'     
+                        value={email}
+                        onChange={(e)=> setEamil(e.target.value)}
                     />
                 </div>
                 <div>
@@ -29,8 +47,10 @@ function SignUpPage() {
                       Username
                     </label>
                     <input
-                        className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-white focus:outline-none focus:ring'
-                        placeholder='Enter username'     
+                        className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-black focus:outline-none focus:ring'
+                        placeholder='Enter username'  
+                        value={username}
+                        onChange={(e)=> setUsername(e.target.value)}   
                     />
                 </div>
                 <div>
@@ -38,11 +58,13 @@ function SignUpPage() {
                 Password
                     </label>
                     <input
-                        className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-white focus:outline-none focus:ring'
-                        placeholder='Enter password'     
+                        className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-black focus:outline-none focus:ring'
+                        placeholder='Enter password'  
+                        value={password}
+                        onChange={(e)=> setPassword(e.target.value)}      
                     />
                 </div>
-                <button className='text-center text-gray-400'>
+                <button className='text-center text-gray-400' onClick={()=>handleClick}>
                     SignUpButton
                 </button>
             </form>
