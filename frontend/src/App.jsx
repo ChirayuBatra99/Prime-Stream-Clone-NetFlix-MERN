@@ -4,10 +4,11 @@ import { useState } from 'react'
 // import './App.css'
 // import './index.css'
 import {Route, Routes} from "react-router-dom";
-import HomePage from './Pages/HomePage';
+import HomePage from './Pages/home/homePage';
 import SignUpPage from './Pages/signUpPage';
 import LoginPage from './Pages/loginPage';
 import AuthScreen from './Pages/home/authScreen';
+import HomeScreen from './Pages/home/homeScreen';
 
 function App() {
   const [count, setCount] = useState(0)

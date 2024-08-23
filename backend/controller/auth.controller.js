@@ -75,7 +75,14 @@ export async function login(req,res){
         if(!isPasswordCorrect)
             return res.status(401).json({success: false, message: "Password is incorrect"})
         generateAuthTokenAndCookie(existUser._id, res)
-        res.status(201).json({success: true, message: "useer logged in successfully"})
+        res.status(201).json({
+             success: true,
+             message: "useer logged in successfully",
+             user: {
+                ...existUser._doc,
+                password: "",
+             }
+            })
     } 
     catch(error){
         res.status(500).json({success: false, message: "catch error, unable to log in"})

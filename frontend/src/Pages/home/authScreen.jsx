@@ -11,7 +11,7 @@ function AuthScreen() {
 
     const handleSubmit =(e)=>{
         e.preventDefault();
-        navigate("/signup?"+email);
+        navigate("/signup?email="+email);
     }
 
     return (

@@ -7,7 +7,7 @@ import { useAuthStore } from '../store/authUser.js';
 function SignUpPage() {
     const {searchParams}= new URL(document.location)
     const emailValue= searchParams.get("email")
-    const [email, setEamil]= useState("");
+    const [email, setEamil]= useState(emailValue || "");
     const [username, setUsername]= useState("");
     const [password, setPassword] = useState(""); 
     const {signup, isSigningUp} = useAuthStore();
@@ -15,7 +15,11 @@ function SignUpPage() {
 
     const handleClick = (e) =>{
         e.preventDefault();
+        console.log("ji");
+        
         signup({ email, username, password});
+        console.log("hi");
+        
     }
 
   return (
@@ -29,7 +33,7 @@ function SignUpPage() {
       <div className='flex justify-center align-center mt-20 mx-3'>
         <div className='w-full max-w-md p-8 space-y-6 bg-black/60 rounded-lg shadow-md'>
             <h1 className='text-center font-bold text-2xl text-white mb-4'>Sign Up</h1>
-            <form className='space-y-4'>
+            <form className='space-y-4' onSubmit={handleClick}>
                 <div>
                     {/* the below block in CSS is a useful thing. */}
                     <label className='text-sm font-medium text-gray-300 block'>
@@ -64,7 +68,7 @@ function SignUpPage() {
                         onChange={(e)=> setPassword(e.target.value)}      
                     />
                 </div>
-                <button className='text-center text-gray-400' onClick={()=>handleClick}>
+                <button className='text-center text-gray-400' >
                     SignUpButton
                 </button>
             </form>
