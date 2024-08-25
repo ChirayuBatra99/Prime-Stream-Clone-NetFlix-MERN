@@ -9,6 +9,8 @@ import SignUpPage from './Pages/signUpPage';
 import LoginPage from './Pages/loginPage';
 import AuthScreen from './Pages/home/authScreen';
 import HomeScreen from './Pages/home/homeScreen';
+import UseGetTrendingContent from './hooks/useGetTrendingContent';
+import Navbar from './components/Navbar';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +21,8 @@ function App() {
         <Route path="/"  element={<HomePage/>}/>
         <Route path="/signup" element={<SignUpPage/>} />       
         <Route path="/login" element={<LoginPage/>} />        
+        <Route path="/content" element={<UseGetTrendingContent/>} />        
+        <Route path="/nav" element={<Navbar/>} />        
 
         <Route path="/auth" element={<AuthScreen/>} />
         

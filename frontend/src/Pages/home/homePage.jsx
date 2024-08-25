@@ -8,7 +8,7 @@ function HomePage() {
   const {user}= useAuthStore();
 
   return (
-    <div>{user? <HomeScreen/> : <AuthScreen/>}</div>
+    <div>{user? <AuthScreen/> : <HomeScreen/>}</div>
   )
 }
 
