@@ -10,7 +10,7 @@ const Navbar = () => {
 	const { setContentType } = useContentStore();
 
 	return (
-		<header className='max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20'>
+		<header className=' absolute max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20'>
 			
            
 

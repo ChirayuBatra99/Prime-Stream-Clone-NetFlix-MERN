@@ -45,6 +45,24 @@ export async function getTrailer(req,res){
     }
 }
 
+export async function getImage(req,res){
+    try{
+        console.log("ddd1");
+        const {id}= req.params;
+        const data= await axios.get(`https://www.omdbapi.com/?i=tt38912${id}&apikey=b276f469`)
+        console.log("2", data.data);
+        res.status(201).json({success: true, message: data.data})
+    }
+    catch(error)
+    {
+        if (error.message.includes("404")) {
+			return res.status(404).send(null);
+		}
+        console.log("error occured in catch block", error.message);
+        res.status(400).json({success: false, message: error.message})
+    }
+}
+
 
 
 
