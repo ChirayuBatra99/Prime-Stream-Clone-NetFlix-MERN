@@ -4,9 +4,22 @@ import { Link } from 'react-router-dom';
 import { useContentStore } from '../store/content';
 import { validMovieIds } from '../utils/constants';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
 const MovieSlider = ({ category }) => {
   const { contentType } = useContentStore();
   const [movies, setMovies] = useState([]);
+
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 1
+  };
 
   useEffect(() => {
     const getContent = async () => {
@@ -34,22 +47,30 @@ const MovieSlider = ({ category }) => {
   }, [contentType, category]);
 
   return (
-    <div className='flex flex-col'>
-      <p>{category}</p>
-      <div className='flex flex-row'>
+    <div className='flex flex-col p-4 bg-stone-800'>
+      <p className=' font-bold mb-2 mt-4 text-white text-3xl'>{category}</p>
+      <Slider {...settings}>
+
+      {/* <div className='flex flex-row space-x-4 overflow-x-scroll scrollbar-hide '> */}
         {movies.map((movie, index) => (
-        <Link key={index}>
-          <div>
-            <img
-              src={movie['Poster']}
-              alt="IMG"
-            />
-          </div>
-          <p>{movie['Title']}</p>
-        </Link>
-      ))}
-      </div>
+          <Link key={index}>
+            <div className='w-[150px] h-[225px] rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform transform'>
+              <img
+                src={movie['Poster']}
+                alt="IMG"
+                className='w-full h-full object-cover'
+              />
+            </div>
+            <p className='mt-2 text-sm font-medium text-center text-white'
+            >{movie['Title']}</p>
+          </Link>
+        ))}
+      {/* </div> */}
+
+      </Slider>
+
     </div>
+
   );
 };
 
@@ -65,47 +86,6 @@ export default MovieSlider;
 
 
 
-// import { React, useEffect, useState } from 'react'
-// import axios from 'axios';
-// import { Link } from 'react-router-dom';
-// import { useContentStore } from '../store/content';
-// import cookieParser from 'cookie-parser';
-// import { validMovieIds } from '../utils/constants';
-
-// const MovieSlider = ({ category }) => {
-//   const { contentType } = useContentStore();
-//   const [content, setContent] = useState([]);
-
-//   useEffect(() => {
-//     const getContent = async () => {
-      
-//       const res = await axios.get(`/api/v1/movies/${keyId}/trailer`);
-//       setContent(res.data.message);
-//       console.log(res.data.message);
-      
-//     };
-//     getContent();
-//   }, [contentType, category]);
 
 
 
-//   return (
-//     <div className='flex flex-row'>
-//       <p>{category}</p>
-
-//       <Link>
-//         <div>
-//           <img
-//           src={content['Poster']}
-//             alt="IMG"
-//           />
-//         </div>
-//         <p>{content['Title']}</p>
-//       </Link>
-
-
-//     </div>
-//   )
-// }
-
-// export default MovieSlider;
