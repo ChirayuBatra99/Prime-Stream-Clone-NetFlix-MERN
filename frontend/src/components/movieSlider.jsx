@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useContentStore } from '../store/content';
 import { validMovieIds } from '../utils/constants';
+import CustomArrow from './customArrow';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,7 +19,7 @@ const MovieSlider = ({ category }) => {
     infinite: false,
     speed: 500,
     slidesToShow: 8,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
 
   useEffect(() => {
@@ -47,7 +48,8 @@ const MovieSlider = ({ category }) => {
   }, [contentType, category]);
 
   return (
-    <div className='flex flex-col p-4 bg-stone-800'>
+    <div className='bg-stoen-800'>
+    <div className='flex flex-col p-5 bg-stone-800 '>
       <p className=' font-bold mb-2 mt-4 text-white text-3xl'>{category}</p>
       <Slider {...settings}>
 
@@ -70,21 +72,11 @@ const MovieSlider = ({ category }) => {
       </Slider>
 
     </div>
-
+    </div>
   );
 };
 
 export default MovieSlider;
-
-
-
-
-
-
-
-
-
-
 
 
 

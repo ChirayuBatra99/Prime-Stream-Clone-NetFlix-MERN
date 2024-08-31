@@ -16,7 +16,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
+    <div className='overflow-x-hidden overflow-y-hidden'>
       <Routes>
         <Route path="/"  element={<HomePage/>}/>
         <Route path="/signup" element={<SignUpPage/>} />       
@@ -27,7 +27,7 @@ function App() {
         <Route path="/auth" element={<AuthScreen/>} />
         
       </Routes>
-    </>
+    </div>
   )
 }
 
