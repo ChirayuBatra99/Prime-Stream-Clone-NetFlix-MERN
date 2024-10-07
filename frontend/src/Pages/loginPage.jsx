@@ -12,17 +12,17 @@ function LoginPage() {
     const {login, isLogginngIn} = useAuthStore();
     const navigate= useNavigate();
 
-    const handleSubmit =(e)=>{
+    const handleSubmit =async(e)=>{
         e.preventDefault();
         login({email, password});
-        navigate("/");
+        // navigate("/home");
     }
 
   return (
     <div className='hero-bg h-screen w-full'>
     <header className='flex items-center justify-between p-4 max-w-6xl mx-auto'>
         <Link to={"/"}>
-            <img src="/netflix-logo.png" className='w-52' />
+            <img src="/prime-stream-logo.png" className='w-52' />
         </Link>
     </header>
 
@@ -50,6 +50,7 @@ function LoginPage() {
                 <input
                     className='w-full px-3 py-2 mt-1 border border-gray-700 rounded-md text-black focus:outline-none focus:ring'
                     placeholder='Enter password'  
+                    type='password'
                     value={password}
                     onChange={(e)=> setPassword(e.target.value)}   
                 />

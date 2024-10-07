@@ -19,6 +19,7 @@ function SignUpPage() {
         
         signup({ email, username, password});
         console.log("hi");
+        navigate("/home");
         
     }
 
@@ -26,7 +27,7 @@ function SignUpPage() {
     <div className='hero-bg h-screen w-full'>
         <header className='flex items-center justify-between p-4 max-w-6xl mx-auto'>
             <Link to={"/"}>
-                <img src="/netflix-logo.png" className='w-52' />
+                <img src="/prime-stream-logo.png" className='w-52' />
             </Link>
         </header>
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useContentStore } from '../store/content';
 import { validMovieIds } from '../utils/constants';
-import CustomArrow from './customArrow';
+// import CustomArrow from './customArrow';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

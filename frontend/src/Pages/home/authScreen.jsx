@@ -17,7 +17,7 @@ function AuthScreen() {
     return (
         <div className="hero-bg relative">
             <header className='flex items-center justify-between p-4 max-w-6xl mx-auto pb-10'>
-                <img src="/netflix-logo.png" className='w-32 md:w-52' />
+                <img src="/prime-stream-logo.png" className='w-32 md:w-52' />
                 <Link to={"/login"} className="text-white">
                     Sign In
                 </Link>

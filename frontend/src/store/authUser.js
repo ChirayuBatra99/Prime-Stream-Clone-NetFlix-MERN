@@ -25,7 +25,7 @@ export const useAuthStore = create((set)=> ({
         set({isLogginngIn: true});
         try{
             const response= await axios.post("/api/v1/auth/login", credentials)
-            set({user: response.data.user, isLogginngIn:false})            
+            set(() => ({user: response.data.user, isLogginngIn:false})  )
             console.log("user logged in successfully");
         }
         catch(error){

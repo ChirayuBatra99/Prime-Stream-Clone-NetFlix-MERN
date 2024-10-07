@@ -15,18 +15,18 @@ const Navbar = () => {
            
 
             <div className="flex flex-row items-center gap-10 z-50">
-                <Link to='/'>
-                    <img src='netflix-logo.png' alt="n logo" className="w-40" />
+                <Link to='/home'>
+                    <img src='prime-stream-logo.png' alt="n logo" className="w-40" />
                 </Link>
 
                 <div className="flex flex-row gap-5">
-                    <Link to='/' className="hover:underline" onClick={()=> setContentType("movie")}>
+                    <Link to='/home' className="hover:underline" onClick={()=> setContentType("movie")}>
                         Movies
                     </Link>
-                    <Link to='/' className="hover:underline" onClick={()=> setContentType("tvshows")}>
+                    <Link to='/home' className="hover:underline" onClick={()=> setContentType("tvshows")}>
                         TV Shows
                     </Link>
-                    <Link to='/' className="hover:underline" onClick={()=> setContentType("history")}>
+                    <Link to='/history' className="hover:underline" onClick={()=> setContentType("history")}>
                         Search History
                     </Link>
                 </div>
