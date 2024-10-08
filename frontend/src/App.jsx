@@ -13,6 +13,8 @@ import UseGetTrendingContent from './hooks/useGetTrendingContent';
 import Navbar from './components/Navbar';
 import SearchHistoryPage from './Pages/searchHistoryPage';
 import { useAuthStore } from './store/authUser';
+import MoviePage from './Pages/movies/moviePage';
+import TvshowPage from './Pages/tvshows/tvshowPage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -43,7 +45,9 @@ function App() {
         <Route path="/nav" element={<Navbar/>} />        
         <Route path="/history" element={<SearchHistoryPage/>} />
         <Route path="/auth" element={<AuthScreen/>} />
-        
+        <Route path="/movie" element={<MoviePage/>} />
+        <Route path="/tvshows" element={<TvshowPage/>} />
+
       </Routes>
     </div>
   )

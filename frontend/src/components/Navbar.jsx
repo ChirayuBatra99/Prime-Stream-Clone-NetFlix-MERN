@@ -20,10 +20,10 @@ const Navbar = () => {
                 </Link>
 
                 <div className="flex flex-row gap-5">
-                    <Link to='/home' className="hover:underline" onClick={()=> setContentType("movie")}>
+                    <Link to='/movie' className="hover:underline" onClick={()=> setContentType("movie")}>
                         Movies
                     </Link>
-                    <Link to='/home' className="hover:underline" onClick={()=> setContentType("tvshows")}>
+                    <Link to='/tvshows' className="hover:underline" onClick={()=> setContentType("tvshows")}>
                         TV Shows
                     </Link>
                     <Link to='/history' className="hover:underline" onClick={()=> setContentType("history")}>
